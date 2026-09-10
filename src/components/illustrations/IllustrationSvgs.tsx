@@ -761,3 +761,87 @@ export const WarningBadgeIllustration: React.FC<SvgProps> = ({ className = '', s
     <circle cx="44" cy="65" r="4.5" fill="#DC2626" />
   </svg>
 );
+
+// 17. Kompres Es di Area Leher (Cold compress / ice bag on neck)
+export const IcepackIllustration: React.FC<SvgProps> = ({ className = '', size = 72 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 80 80"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    role="img"
+    aria-label="Kompres es dingin di area leher"
+  >
+    {/* Soft cool mint circle */}
+    <circle cx="40" cy="40" r="36" fill="#E0F2FE" />
+
+    {/* Neck outline */}
+    <path d="M28 20 L28 44 C28 54 33 60 40 60 C47 60 52 54 52 44 L52 20" stroke="#FBBF24" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+    {/* Head jawline */}
+    <path d="M22 20 C22 30 31 35 40 35 C49 35 58 30 58 20" stroke="#F59E0B" strokeWidth="2.5" strokeLinecap="round" fill="#FEF3C7" opacity="0.8" />
+
+    {/* Ice Bag / Ice pack curved on neck */}
+    <path
+      d="M26 36 C24 45 28 54 38 54 C48 54 54 48 54 38 C54 32 46 32 38 34 C32 35 28 34 26 36 Z"
+      fill="#38BDF8"
+      stroke="#0284C7"
+      strokeWidth="2.5"
+    />
+    {/* Ice bag cloth tie / cap */}
+    <ellipse cx="40" cy="32" rx="7" ry="3.5" fill="#0369A1" />
+    <rect x="38" y="27" width="4" height="6" rx="1.5" fill="#0284C7" />
+
+    {/* Ice cubes texture inside */}
+    <rect x="31" y="40" width="7" height="7" rx="2" fill="#BAE6FD" stroke="#7DD3FC" strokeWidth="1" />
+    <rect x="42" y="42" width="7" height="7" rx="2" fill="#BAE6FD" stroke="#7DD3FC" strokeWidth="1" />
+
+    {/* Cool snowflakes / soothing frost dots */}
+    <path d="M16 38 L22 38 M19 35 L19 41" stroke="#0284C7" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M60 46 L66 46 M63 43 L63 49" stroke="#0284C7" strokeWidth="1.8" strokeLinecap="round" />
+    <circle cx="21" cy="52" r="2" fill="#7DD3FC" />
+    <circle cx="61" cy="32" r="2" fill="#7DD3FC" />
+  </svg>
+);
+
+// 18. Larangan: Dilarang Batuk / Bersin Keras
+export const CoughAvoidIllustration: React.FC<SvgProps> = ({ className = '', size = 70 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 80 80"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    role="img"
+    aria-label="Larangan batuk keras atau bersin tertahan"
+  >
+    <circle cx="40" cy="40" r="36" fill="#FEE2E2" />
+
+    {/* Person head in profile coughing */}
+    <circle cx="34" cy="24" r="9" fill="#FDE2CD" />
+    {/* Hair */}
+    <path d="M26 24 C26 16 34 14 42 18 C41 24 37 26 30 26 Z" fill="#3A2E2B" />
+
+    {/* Open mouth during cough */}
+    <path d="M40 26 C43 27 45 30 43 33 C41 34 38 33 37 31" fill="#DC2626" stroke="#B91C1C" strokeWidth="1" />
+
+    {/* Body / Neck with throat focus */}
+    <path d="M34 33 L34 50 C34 56 26 62 20 66" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
+    <path d="M37 35 L46 48 L56 50" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
+
+    {/* Throat stress/pain vibration bursts */}
+    <circle cx="37" cy="35" r="4.5" fill="#EF4444" opacity="0.85" />
+    <path d="M44 33 L48 31 M45 37 L50 37 M44 41 L48 43" stroke="#DC2626" strokeWidth="2" strokeLinecap="round" />
+
+    {/* Strong cough airflow shockwaves */}
+    <path d="M48 24 Q55 21 60 25" stroke="#EA580C" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+    <path d="M52 28 Q60 27 65 31" stroke="#EA580C" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+    <path d="M48 34 Q56 36 61 40" stroke="#EA580C" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+
+    {/* Red Prohibition Slash on Cough */}
+    <line x1="50" y1="18" x2="68" y2="38" stroke="#DC2626" strokeWidth="3.5" strokeLinecap="round" />
+  </svg>
+);
+

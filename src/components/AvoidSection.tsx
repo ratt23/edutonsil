@@ -8,8 +8,9 @@ import {
   SmokingAvoidIllustration,
   StrainingAvoidIllustration,
   DustHeatAvoidIllustration,
+  CoughAvoidIllustration,
 } from './illustrations/IllustrationSvgs';
-import { X, HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { X, HelpCircle, ChevronDown, ChevronUp, Lightbulb } from 'lucide-react';
 
 export const AvoidSection: React.FC = () => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -20,10 +21,12 @@ export const AvoidSection: React.FC = () => {
 
   const renderIllustration = (type: AvoidItem['iconType']) => {
     switch (type) {
-      case 'exercise':
-        return <HeavyExerciseAvoidIllustration size={68} />;
+      case 'cough':
+        return <CoughAvoidIllustration size={68} />;
       case 'hotfood':
         return <HotFoodAvoidIllustration size={68} />;
+      case 'exercise':
+        return <HeavyExerciseAvoidIllustration size={68} />;
       case 'hardfood':
         return <HardFoodAvoidIllustration size={68} />;
       case 'spicyacid':
@@ -102,9 +105,9 @@ export const AvoidSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Top Row: 4 Cards */}
+          {/* 8 Avoid Cards in a 4-Column Grid (2 Rows of 4 Cards on Desktop) */}
           <div className="cards-grid-4">
-            {AVOID_ITEMS.slice(0, 4).map((item) => {
+            {AVOID_ITEMS.map((item) => {
               const isExpanded = expandedId === item.id;
               return (
                 <article
@@ -150,11 +153,54 @@ export const AvoidSection: React.FC = () => {
                         fontSize: '0.92rem',
                         color: 'var(--text-main)',
                         lineHeight: 1.45,
-                        marginBottom: '14px',
+                        marginBottom: item.tips && item.tips.length > 0 ? '10px' : '14px',
                       }}
                     >
                       {item.summary}
                     </p>
+
+                    {/* Tips Box if provided (e.g. for batuk/bersin or makanan panas/hangat) */}
+                    {item.tips && item.tips.length > 0 && (
+                      <div
+                        style={{
+                          backgroundColor: '#FFFBEB',
+                          border: '1px solid #FDE68A',
+                          borderRadius: 'var(--radius-md)',
+                          padding: '10px 12px',
+                          marginBottom: '14px',
+                          fontSize: '0.84rem',
+                          color: '#92400E',
+                          lineHeight: 1.4,
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontWeight: 800,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '5px',
+                            marginBottom: '4px',
+                            color: '#B45309',
+                          }}
+                        >
+                          <Lightbulb size={14} />
+                          <span>Tips Penting:</span>
+                        </div>
+                        <ul
+                          style={{
+                            paddingLeft: '16px',
+                            margin: 0,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '3px',
+                          }}
+                        >
+                          {item.tips.map((tip, tIdx) => (
+                            <li key={tIdx}>{tip}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
 
                   {/* Toggle "Mengapa perlu dihindari?" */}
@@ -207,111 +253,10 @@ export const AvoidSection: React.FC = () => {
             })}
           </div>
 
-          {/* Bottom Row: 3 Cards (Merokok, Mengejan, Debu & Panas) */}
-          <div className="cards-grid-3" style={{ marginTop: '20px' }}>
-            {AVOID_ITEMS.slice(4, 7).map((item) => {
-              const isExpanded = expandedId === item.id;
-              return (
-                <article
-                  key={item.id}
-                  className="poster-card"
-                  style={{
-                    border: '1.5px solid var(--pink-border-card)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: '10px 0',
-                        marginBottom: '8px',
-                      }}
-                    >
-                      {renderIllustration(item.iconType)}
-                    </div>
-
-                    <h3
-                      style={{
-                        fontSize: '1.15rem',
-                        fontWeight: 800,
-                        color: 'var(--navy-title)',
-                        marginBottom: '10px',
-                        lineHeight: 1.3,
-                      }}
-                    >
-                      {item.title}
-                    </h3>
-
-                    <p
-                      style={{
-                        fontSize: '0.92rem',
-                        color: 'var(--text-main)',
-                        lineHeight: 1.45,
-                        marginBottom: '14px',
-                      }}
-                    >
-                      {item.summary}
-                    </p>
-                  </div>
-
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => toggleWhy(item.id)}
-                      aria-expanded={isExpanded}
-                      aria-controls={`avoid-why-${item.id}`}
-                      style={{
-                        width: '100%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '6px',
-                        backgroundColor: isExpanded ? '#FCE4EC' : '#FFF0F3',
-                        color: 'var(--pink-dark)',
-                        fontSize: '0.86rem',
-                        fontWeight: 700,
-                        padding: '8px 12px',
-                        borderRadius: 'var(--radius-sm)',
-                        border: '1px solid var(--pink-border-card)',
-                      }}
-                    >
-                      <HelpCircle size={15} />
-                      <span>{isExpanded ? 'Tutup penjelasan' : 'Mengapa perlu dihindari?'}</span>
-                      {isExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
-                    </button>
-
-                    {isExpanded && (
-                      <div
-                        id={`avoid-why-${item.id}`}
-                        style={{
-                          marginTop: '10px',
-                          padding: '12px',
-                          backgroundColor: '#FFF8F9',
-                          borderLeft: '3px solid var(--pink-dark)',
-                          borderRadius: '4px',
-                          fontSize: '0.86rem',
-                          color: '#4A1521',
-                          lineHeight: 1.5,
-                        }}
-                      >
-                        <p style={{ margin: 0 }}>{item.whyAvoid}</p>
-                      </div>
-                    )}
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-
-          {/* Review note at bottom of avoid section */}
+          {/* Bottom Review Note */}
           <div
             style={{
-              marginTop: '20px',
+              marginTop: '22px',
               padding: '10px 16px',
               backgroundColor: 'rgba(255, 255, 255, 0.7)',
               borderRadius: 'var(--radius-md)',
@@ -321,7 +266,7 @@ export const AvoidSection: React.FC = () => {
               textAlign: 'center',
             }}
           >
-            Catatan: Draf panduan pembatasan makanan dan durasi aktivitas perlu dikonfirmasi kembali dengan dokter yang merawat.
+            Catatan: Pantangan di atas disusun untuk mencegah komplikasi robekan luka dan perdarahan sekunder pasca operasi tonsil.
           </div>
         </div>
       </div>

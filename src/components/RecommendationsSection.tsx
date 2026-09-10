@@ -12,6 +12,7 @@ import {
   OralHygieneIllustration,
   MedicineScheduleIllustration,
   CalendarReminderIllustration,
+  IcepackIllustration,
 } from './illustrations/IllustrationSvgs';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -28,6 +29,8 @@ export const RecommendationsSection: React.FC = () => {
         return <WaterHydrationIllustration size={68} />;
       case 'food':
         return <SoftFoodIllustration size={68} />;
+      case 'icepack':
+        return <IcepackIllustration size={68} />;
       case 'rest':
         return <RestSleepIllustration size={68} />;
       case 'hygiene':
@@ -102,9 +105,9 @@ export const RecommendationsSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Top Row: 4 Cards (Banyak Minum, Tetap Makan, Istirahat Cukup, Jaga Kebersihan Mulut) */}
-          <div className="cards-grid-4">
-            {RECOMMENDATIONS.slice(0, 4).map((item) => {
+          {/* 6 Recommendations Cards Grid (3 Columns on Desktop, 2 on Tablet, 1 on Mobile) */}
+          <div className="cards-grid-3">
+            {RECOMMENDATIONS.map((item) => {
               const isExpanded = expandedId === item.id;
               return (
                 <article
@@ -134,11 +137,12 @@ export const RecommendationsSection: React.FC = () => {
                     {/* Card Title */}
                     <h3
                       style={{
-                        fontSize: '1.25rem',
+                        fontSize: '1.2rem',
                         fontWeight: 800,
                         color: 'var(--navy-title)',
                         marginBottom: '10px',
                         textAlign: 'left',
+                        lineHeight: 1.3,
                       }}
                     >
                       {item.title}
@@ -249,156 +253,17 @@ export const RecommendationsSection: React.FC = () => {
             })}
           </div>
 
-          {/* Bottom Row: 5th Card (Minum Obat), Inspirational Quote, & Bleeding Risk Notice */}
+          {/* Bottom Row: Inspirational Quote & Bleeding Risk Notice */}
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1.2fr 1.2fr',
+              gridTemplateColumns: '1.1fr 1.2fr',
               gap: '20px',
-              marginTop: '20px',
+              marginTop: '24px',
               alignItems: 'stretch',
             }}
             className="bottom-anjuran-grid"
           >
-            {/* Card 5: Minum Obat Sesuai Resep */}
-            {(() => {
-              const item = RECOMMENDATIONS[4];
-              const isExpanded = expandedId === item.id;
-              return (
-                <article
-                  className="poster-card"
-                  style={{
-                    border: '1.5px solid var(--green-border-card)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: '10px 0',
-                        marginBottom: '8px',
-                      }}
-                    >
-                      {renderIllustration(item.iconType)}
-                    </div>
-
-                    <h3
-                      style={{
-                        fontSize: '1.25rem',
-                        fontWeight: 800,
-                        color: 'var(--navy-title)',
-                        marginBottom: '10px',
-                        textAlign: 'left',
-                      }}
-                    >
-                      {item.title}
-                    </h3>
-
-                    <ul
-                      style={{
-                        listStyle: 'none',
-                        padding: 0,
-                        margin: '0 0 14px 0',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '6px',
-                      }}
-                    >
-                      {item.points.map((pt, idx) => (
-                        <li
-                          key={idx}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'flex-start',
-                            gap: '8px',
-                            fontSize: '0.94rem',
-                            color: 'var(--text-main)',
-                            lineHeight: 1.45,
-                          }}
-                        >
-                          <span
-                            style={{
-                              color: 'var(--green-primary)',
-                              fontSize: '1.1rem',
-                              lineHeight: 1,
-                              marginTop: '2px',
-                            }}
-                          >
-                            •
-                          </span>
-                          <span>{pt}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div
-                      style={{
-                        backgroundColor: 'var(--green-bg-light)',
-                        border: '1px solid #D5F5E3',
-                        borderRadius: 'var(--radius-md)',
-                        padding: '10px 12px',
-                        fontSize: '0.86rem',
-                        color: 'var(--green-dark)',
-                        lineHeight: 1.4,
-                        marginBottom: '14px',
-                      }}
-                    >
-                      {item.note}
-                    </div>
-                  </div>
-
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => toggleDetail(item.id)}
-                      aria-expanded={isExpanded}
-                      aria-controls={`detail-${item.id}`}
-                      style={{
-                        width: '100%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '6px',
-                        backgroundColor: isExpanded ? '#E8F8F0' : '#F4FAF6',
-                        color: 'var(--green-dark)',
-                        fontSize: '0.88rem',
-                        fontWeight: 700,
-                        padding: '8px 12px',
-                        borderRadius: 'var(--radius-sm)',
-                        border: '1px solid var(--green-border-card)',
-                      }}
-                    >
-                      <span>{isExpanded ? 'Tutup detail' : 'Lihat detail'}</span>
-                      {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                    </button>
-
-                    {isExpanded && (
-                      <div
-                        id={`detail-${item.id}`}
-                        style={{
-                          marginTop: '10px',
-                          padding: '12px',
-                          backgroundColor: '#FCFDFD',
-                          borderLeft: '3px solid var(--green-primary)',
-                          borderRadius: '4px',
-                          fontSize: '0.88rem',
-                          color: 'var(--text-main)',
-                          lineHeight: 1.5,
-                        }}
-                      >
-                        <p style={{ margin: 0 }}>{item.details}</p>
-                      </div>
-                    )}
-                  </div>
-                </article>
-              );
-            })()}
-
             {/* Handwritten Center Quote Box */}
             <div
               style={{

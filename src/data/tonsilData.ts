@@ -4,7 +4,7 @@ export interface RecommendationItem {
   points: string[];
   note: string;
   details: string;
-  iconType: 'water' | 'food' | 'rest' | 'hygiene' | 'medicine';
+  iconType: 'water' | 'food' | 'rest' | 'hygiene' | 'medicine' | 'icepack';
 }
 
 export interface AvoidItem {
@@ -12,7 +12,8 @@ export interface AvoidItem {
   title: string;
   summary: string;
   whyAvoid: string;
-  iconType: 'exercise' | 'hotfood' | 'hardfood' | 'spicyacid' | 'smoking' | 'straining' | 'dustheat';
+  tips?: string[];
+  iconType: 'exercise' | 'hotfood' | 'hardfood' | 'spicyacid' | 'smoking' | 'straining' | 'dustheat' | 'cough';
 }
 
 export interface FaqItem {
@@ -54,22 +55,34 @@ export const RECOMMENDATIONS: RecommendationItem[] = [
   },
   {
     id: 'tetap-makan',
-    title: 'Tetap makan',
+    title: 'Tetap makan (Suhu Dingin / Ruang)',
     points: [
       'Makan sesuai toleransi dan tingkatkan bertahap.',
-      'Pilih makanan yang nyaman ditelan.',
-      'Minum obat antinyeri sesuai resep, terutama sebelum makan bila nyeri membuat sulit menelan.',
+      'Pilih makanan yang nyaman dan lembut ditelan.',
+      'Disarankan makanan dingin atau bersuhu ruang, contoh: ice cream, puding, yogurt.',
     ],
-    note: 'Jangan sengaja mengurangi makan/minum karena takut luka berdarah.',
-    details: 'Tubuh membutuhkan asupan kalori dan protein untuk regenerasi jaringan luka bedah. Awali dengan makanan lunak bersuhu dingin atau sejuk (seperti bubur dingin, puding, gelatin, sup hangat-kuku). Tingkatkan tekstur secara bertahap seiring membaiknya kemampuan menelan.',
+    note: 'Dilarang makanan panas atau hangat. Es krim lembut sangat baik meredakan nyeri dan bengkak.',
+    details: 'Tubuh membutuhkan asupan kalori dan protein untuk regenerasi jaringan luka bedah. Pilih makanan dingin atau bersuhu ruang seperti es krim lembut (tanpa kacang/topping tajam), puding, gelatin, atau bubur halus yang telah didinginkan. Minum obat antinyeri 30 menit sebelum makan bila nyeri.',
     iconType: 'food',
+  },
+  {
+    id: 'kompres-es',
+    title: 'Kompres es di area leher',
+    points: [
+      'Tempelkan kompres es atau handuk dingin di bagian luar leher.',
+      'Membantu meredakan nyeri dan pembengkakan.',
+      'Mengecilkan pembuluh darah (vasokonstriksi) untuk mencegah perdarahan.',
+    ],
+    note: 'Balut kantong es dengan handuk/kain bersih agar tidak menempel langsung pada kulit leher.',
+    details: 'Sensasi dingin dari kompres es merangsang vasokonstriksi (penyempitan pembuluh darah kapiler) di area tenggorokan, sehingga sangat efektif menekan risiko rembesan darah sekaligus meredakan rasa berdenyut dan perih pasca operasi.',
+    iconType: 'icepack',
   },
   {
     id: 'istirahat-cukup',
     title: 'Istirahat cukup',
     points: [
       'Tidur dan istirahat yang cukup.',
-      'Aktivitas ringan seperti berjalan di rumah diperbolehkan.',
+      'Aktivitas ringan seperti berjalan santai di rumah diperbolehkan.',
     ],
     note: 'Hindari aktivitas yang memicu lonjakan denyut jantung mendadak.',
     details: 'Istirahat memberikan kesempatan sel tubuh fokus pada proses penyembuhan jaringan. Batasi aktivitas fisik berat dan luangkan waktu untuk tidur cukup. Berjalan santai di dalam rumah tetap dianjurkan agar aliran darah lancar.',
@@ -110,18 +123,34 @@ export const BLEEDING_RISK_NOTE = {
 
 export const AVOID_ITEMS: AvoidItem[] = [
   {
+    id: 'dilarang-batuk',
+    title: 'Dilarang batuk/bersin keras',
+    summary: 'Pasien dilarang batuk keras setelah operasi karena hentakan dan tekanan yang kuat dapat merobek luka operasi atau mengelupas keropeng pelindung sebelum waktunya.',
+    whyAvoid: 'Hentakan batuk keras sangat berbahaya karena bisa memicu perdarahan hebat (komplikasi serius) pada pembuluh darah tenggorokan yang masih rapuh.',
+    tips: [
+      'Jika tenggorokan terasa gatal: Buka mulut lebar-lebar saat terpaksa batuk atau bersin agar tekanannya langsung keluar.',
+      'Minum air dingin sedikit demi sedikit untuk meredakan rasa gatal.',
+      'Jangan berdeham atau memicu batuk dengan sengaja.',
+    ],
+    iconType: 'cough',
+  },
+  {
+    id: 'makanan-panas',
+    title: 'Dilarang makan makanan panas/hangat',
+    summary: 'Hindari semua makanan dan minuman panas maupun hangat. Disarankan makan makanan dingin atau bersuhu ruang, contoh: ice cream.',
+    whyAvoid: 'Suhu panas dan hangat memicu vasodilatasi (pelebaran) pembuluh darah di bekas operasi amandel, memicu perdarahan aktif dan memperparah nyeri menyengat pada luka mukosa.',
+    tips: [
+      'Disarankan: Ice cream, puding dingin, yogurt, susu dingin, atau bubur yang sudah didinginkan ke suhu ruang.',
+      'Hindari teh/kopi hangat, sup hangat, makanan berkuah panas, dan makanan beruap.',
+    ],
+    iconType: 'hotfood',
+  },
+  {
     id: 'aktivitas-berat',
     title: 'Aktivitas fisik berat selama ±2 minggu',
     summary: 'Hindari olahraga, berlari, gym, angkat beban, aktivitas yang membuat mengejan, dan pekerjaan fisik berat.',
     whyAvoid: 'Peningkatan tekanan darah arterial dan denyut jantung saat berolahraga berat dapat mendorong dan membuka pembuluh darah yang sedang menutup di area amandel, memicu perdarahan sekunder pasca bedah.',
     iconType: 'exercise',
-  },
-  {
-    id: 'makanan-panas',
-    title: 'Makanan/minuman yang sangat panas',
-    summary: 'Hindari kopi/teh panas, makanan beruap/panas, sup panas. Pilih suhu dingin atau hangat-suam kuku.',
-    whyAvoid: 'Suhu panas memicu vasodilatasi (pelebaran) pembuluh darah kapiler di bekas operasi, meningkatkan risiko perdarahan aktif dan memperberat sensasi nyeri menyengat pada luka mukosa tenggorokan.',
-    iconType: 'hotfood',
   },
   {
     id: 'makanan-keras',
