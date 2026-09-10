@@ -1,0 +1,280 @@
+/* ==========================================================================
+   PANDUAN PERAWATAN PASCA TONSILEKTOMI - DESIGN SYSTEM
+   Warm, illustrative, family-friendly medical poster visual style
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-ivory: #FAF8F2;
+  --bg-page: #FCFBF7;
+  --bg-card-white: #FFFFFF;
+  
+  /* Primary Navy & Slate */
+  --navy-title: #1B365D;
+  --navy-dark: #122540;
+  --navy-light: #2A4D7E;
+  --text-main: #2C3E50;
+  --text-muted: #5A6E7F;
+  --text-light: #7E92A2;
+
+  /* Theme Accents */
+  --green-primary: #27AE60;
+  --green-dark: #1E8449;
+  --green-border: #A3E4D7;
+  --green-border-card: #C3E6CB;
+  --green-bg-light: #F2F9F4;
+  --green-pill: #28B463;
+  --green-pill-dark: #1D8348;
+  
+  --pink-primary: #F06292;
+  --pink-dark: #D81B60;
+  --pink-border: #F8BBD0;
+  --pink-border-card: #FADBD8;
+  --pink-bg-light: #FFF5F7;
+  --pink-ribbon: #F45B69;
+  --pink-ribbon-dark: #D93B4A;
+
+  --emergency-red: #D93025;
+  --emergency-dark: #B31B1B;
+  --emergency-light-bg: #FDEDEC;
+  --emergency-border: #F5B7B1;
+  --emergency-callout: #E74C3C;
+
+  --accent-gold: #F39C12;
+  --accent-yellow-light: #FEF9E7;
+  --accent-border-yellow: #FAD7A0;
+
+  /* Typography */
+  --font-title: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-accent: 'Caveat', cursive, sans-serif;
+
+  /* Sizing & Spacing */
+  --site-max-width: 1160px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 16px rgba(27, 54, 93, 0.05);
+  --shadow-card: 0 4px 12px rgba(27, 54, 93, 0.06);
+  --shadow-hover: 0 8px 24px rgba(27, 54, 93, 0.1);
+  --shadow-emergency: 0 8px 24px rgba(217, 48, 37, 0.15);
+
+  /* Touch minimums */
+  --touch-target-min: 44px;
+}
+
+/* Reset & Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-ivory);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: var(--bg-ivory);
+  background-image: 
+    radial-gradient(#E8E4D9 1px, transparent 1px),
+    radial-gradient(#E8E4D9 1px, var(--bg-ivory) 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  color: var(--navy-title);
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+p, li, span, button, input {
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.handwritten-text {
+  font-family: var(--font-accent);
+  letter-spacing: 0.5px;
+}
+
+/* Accessible focus ring */
+:focus-visible {
+  outline: 3px solid #0284C7;
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Layout container */
+.container {
+  width: 100%;
+  max-width: var(--site-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Ribbon badge styles */
+.poster-ribbon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pink-ribbon);
+  color: #FFFFFF;
+  font-family: var(--font-title);
+  font-weight: 800;
+  padding: 10px 28px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 10px rgba(244, 91, 105, 0.25);
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.poster-ribbon-green {
+  background-color: var(--green-pill);
+  box-shadow: 0 4px 12px rgba(40, 180, 99, 0.25);
+}
+
+.poster-ribbon-pink {
+  background-color: var(--pink-dark);
+  box-shadow: 0 4px 12px rgba(216, 27, 96, 0.25);
+}
+
+.poster-ribbon-red {
+  background-color: var(--emergency-red);
+  box-shadow: 0 4px 12px rgba(217, 48, 37, 0.25);
+}
+
+/* Interactive touch buttons */
+button {
+  min-height: var(--touch-target-min);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Organic pastel card container */
+.poster-section-frame {
+  border-radius: var(--radius-xl);
+  padding: 32px 28px;
+  position: relative;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-card);
+}
+
+.frame-green {
+  background-color: var(--green-bg-light);
+  border: 3px solid var(--green-border);
+}
+
+.frame-pink {
+  background-color: var(--pink-bg-light);
+  border: 3px solid var(--pink-border);
+}
+
+.frame-emergency {
+  background-color: var(--emergency-callout);
+  border: 4px solid #C0392B;
+  color: #FFFFFF;
+  box-shadow: var(--shadow-emergency);
+}
+
+/* Card item grid */
+.cards-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.cards-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.cards-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Individual cute card */
+.poster-card {
+  background-color: var(--bg-card-white);
+  border-radius: var(--radius-lg);
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.poster-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .cards-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .poster-section-frame {
+    padding: 24px 16px;
+    border-radius: var(--radius-lg);
+    border-width: 2px;
+  }
+  
+  .cards-grid-4, .cards-grid-3, .cards-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Leave bottom space on mobile for floating emergency button */
+  body {
+    padding-bottom: 76px;
+  }
+}
