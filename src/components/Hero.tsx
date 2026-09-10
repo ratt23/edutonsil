@@ -1,7 +1,7 @@
 import React from 'react';
 import { HERO_DATA } from '../data/tonsilData';
 import { PatientDrinkingIllustration, TonsilDiagramIllustration } from './illustrations/IllustrationSvgs';
-import { AlertCircle, ChevronDown, ArrowRight } from 'lucide-react';
+import { AlertCircle, ChevronDown, ArrowRight, Phone } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const scrollTo = (id: string) => {
@@ -342,25 +342,52 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={() => scrollTo('tanda-bahaya')}
-            style={{
-              backgroundColor: 'var(--emergency-red)',
-              color: '#FFFFFF',
-              fontWeight: 800,
-              fontSize: '0.9rem',
-              padding: '8px 18px',
-              borderRadius: 'var(--radius-pill)',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-              boxShadow: '0 2px 8px rgba(217, 48, 37, 0.25)',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--emergency-dark)')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--emergency-red)')}
-          >
-            Lihat Tanda Bahaya
-          </button>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center' }}>
+            <a
+              href="tel:1500911"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                backgroundColor: '#E52330',
+                color: '#FFFFFF',
+                fontWeight: 900,
+                fontSize: '0.88rem',
+                fontFamily: 'var(--font-title)',
+                padding: '9px 18px',
+                borderRadius: 'var(--radius-pill)',
+                textDecoration: 'none',
+                boxShadow: '0 3px 10px rgba(229, 35, 48, 0.35)',
+                whiteSpace: 'nowrap',
+                letterSpacing: '0.3px',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#B71C1C')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#E52330')}
+            >
+              <span>24/7 EMERGENCY & CONTACT CENTER: 1500911</span>
+              <Phone size={16} strokeWidth={2.8} />
+            </a>
+
+            <button
+              type="button"
+              onClick={() => scrollTo('tanda-bahaya')}
+              style={{
+                backgroundColor: '#FFFFFF',
+                color: 'var(--emergency-red)',
+                border: '1.5px solid var(--emergency-red)',
+                fontWeight: 800,
+                fontSize: '0.88rem',
+                padding: '8px 16px',
+                borderRadius: 'var(--radius-pill)',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--emergency-light-bg)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#FFFFFF')}
+            >
+              Lihat Tanda Bahaya
+            </button>
+          </div>
         </div>
       </div>
 

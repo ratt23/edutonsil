@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AlertTriangle, Heart, CheckCircle2, XCircle, CalendarCheck, HelpCircle } from 'lucide-react';
+import { AlertTriangle, Heart, CheckCircle2, XCircle, CalendarCheck, HelpCircle, Phone } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -165,11 +165,11 @@ export const Navbar: React.FC = () => {
               <span>FAQ</span>
             </a>
 
-            {/* Prominent Emergency Button */}
+            {/* Prominent Emergency Section Link */}
             <a
               href="#tanda-bahaya"
               onClick={(e) => scrollToSection(e, 'tanda-bahaya')}
-              aria-label="Buka informasi darurat tanda bahaya segera ke IGD"
+              aria-label="Buka informasi tanda bahaya segera ke IGD"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -177,71 +177,92 @@ export const Navbar: React.FC = () => {
                 backgroundColor: 'var(--emergency-red)',
                 color: '#FFFFFF',
                 fontWeight: 800,
-                fontSize: '0.95rem',
+                fontSize: '0.92rem',
                 fontFamily: 'var(--font-title)',
-                padding: '10px 18px',
+                padding: '9px 18px',
                 borderRadius: 'var(--radius-pill)',
                 textDecoration: 'none',
-                minHeight: '44px',
-                boxShadow: '0 4px 12px rgba(217, 48, 37, 0.3)',
+                minHeight: '42px',
+                boxShadow: '0 4px 12px rgba(217, 48, 37, 0.25)',
                 marginLeft: '8px',
                 transition: 'transform 0.15s ease, background-color 0.2s',
               }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#B31B1B')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--emergency-red)')}
             >
-              <AlertTriangle size={18} />
+              <AlertTriangle size={17} />
               <span>Tanda Bahaya (IGD)</span>
             </a>
           </nav>
         </div>
       </header>
 
-      {/* Floating Bottom Button for Mobile Viewports */}
-      <div
-        className="mobile-emergency-floating"
+      {/* Floating 24/7 Emergency Button (Desktop & Mobile) */}
+      <aside
+        aria-label="Panggilan Darurat Cepat 24/7"
+        className="floating-emergency-widget"
         style={{
           position: 'fixed',
-          bottom: '16px',
-          left: '16px',
-          right: '16px',
-          zIndex: 999,
-          display: 'none', // Shown via CSS media query
+          bottom: '24px',
+          right: '24px',
+          zIndex: 9999,
         }}
       >
         <a
-          href="#tanda-bahaya"
-          onClick={(e) => scrollToSection(e, 'tanda-bahaya')}
+          href="tel:1500911"
+          aria-label="Hubungi 24/7 Emergency 1500911"
+          className="floating-emergency-pill-btn"
           style={{
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
             gap: '10px',
-            backgroundColor: 'var(--emergency-red)',
+            backgroundColor: '#E52330',
             color: '#FFFFFF',
-            fontWeight: 800,
-            fontSize: '1.05rem',
+            fontWeight: 900,
+            fontSize: '1rem',
             fontFamily: 'var(--font-title)',
-            padding: '14px 20px',
-            borderRadius: 'var(--radius-pill)',
+            padding: '13px 24px',
+            borderRadius: '9999px',
             textDecoration: 'none',
-            minHeight: '48px',
-            boxShadow: '0 8px 24px rgba(217, 48, 37, 0.45)',
             border: '2px solid #FFFFFF',
+            boxShadow: '0 8px 24px rgba(229, 35, 48, 0.45)',
+            letterSpacing: '0.4px',
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease',
+            whiteSpace: 'nowrap',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#B71C1C';
+            e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
+            e.currentTarget.style.boxShadow = '0 12px 28px rgba(229, 35, 48, 0.55)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#E52330';
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(229, 35, 48, 0.45)';
           }}
         >
-          <AlertTriangle size={20} />
-          <span>Tanda Bahaya: Segera ke IGD</span>
+          <span>24/7 EMERGENCY: 1500911</span>
+          <Phone size={19} strokeWidth={2.8} />
         </a>
-      </div>
+      </aside>
 
       <style>{`
         @media (max-width: 840px) {
           .nav-desktop-menu {
             display: none !important;
           }
-          .mobile-emergency-floating {
-            display: block !important;
+        }
+        @media (max-width: 640px) {
+          .floating-emergency-widget {
+            bottom: 16px !important;
+            left: 16px !important;
+            right: 16px !important;
+          }
+          .floating-emergency-pill-btn {
+            width: 100% !important;
+            padding: 14px 20px !important;
+            font-size: 0.96rem !important;
           }
         }
       `}</style>

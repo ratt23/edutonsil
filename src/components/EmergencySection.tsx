@@ -1,7 +1,7 @@
 import React from 'react';
 import { EMERGENCY_DATA } from '../data/tonsilData';
 import { WarningBadgeIllustration } from './illustrations/IllustrationSvgs';
-import { ShieldAlert } from 'lucide-react';
+import { ShieldAlert, Phone } from 'lucide-react';
 
 export const EmergencySection: React.FC = () => {
   return (
@@ -209,6 +209,71 @@ export const EmergencySection: React.FC = () => {
               }}
             >
               {EMERGENCY_DATA.primaryWarning}
+            </span>
+          </div>
+
+          {/* Official 24/7 Emergency & Contact Center 1500911 Pill Button */}
+          <div
+            style={{
+              marginTop: '20px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+            }}
+          >
+            <a
+              href="tel:1500911"
+              aria-label="Hubungi 24/7 Emergency and Contact Center 1500911"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '12px',
+                backgroundColor: '#E52330',
+                color: '#FFFFFF',
+                border: '3px solid #FFFFFF',
+                borderRadius: 'var(--radius-pill)',
+                padding: '14px 28px',
+                fontWeight: 900,
+                fontSize: 'clamp(0.95rem, 2.2vw, 1.22rem)',
+                fontFamily: 'var(--font-title)',
+                textDecoration: 'none',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
+                letterSpacing: '0.4px',
+                transition: 'all 0.2s ease',
+                cursor: 'pointer',
+                textAlign: 'center',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#B71C1C';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#E52330';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              <span>24/7 EMERGENCY & CONTACT CENTER</span>
+              <span
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  color: '#E52330',
+                  padding: '4px 14px',
+                  borderRadius: 'var(--radius-pill)',
+                  fontSize: '1.1rem',
+                  fontWeight: 900,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                }}
+              >
+                1500911
+              </span>
+              <Phone size={22} strokeWidth={2.8} />
+            </a>
+            <span style={{ color: '#FFE4E6', fontSize: '0.85rem', fontWeight: 600 }}>
+              Tekan tombol untuk langsung menghubungi IGD Siloam
             </span>
           </div>
         </div>
